@@ -8,9 +8,14 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    income: Number,
-    tax:0,
-    untax: 0
+    QZD: 3500,
+    income: "",
+    tax:"",
+    taxedIncome: "",
+    
+    untax: 0,
+    
+    
   },
   //事件处理函数
   bindViewTap: function() {
@@ -54,6 +59,14 @@ Page({
       hasUserInfo: true
     })
   },
+
+  inputQZD: function(e) {
+    var val = e.detail.value;
+    this.setData({
+      QZD: val
+    });
+  },
+
   inputIncome: function (e) {
     var val = e.detail.value;
     this.setData({
@@ -95,20 +108,20 @@ Page({
     }
     return tax;
   },
-
   tapSubmit: function(e) {
     if (isNaN(this.data.income)) {
       wx.showToast({
         title: 'Please enter a proper number',
         icon: 'none',
-        duration: 2000
+        duration: 1000
       })
       return;
     } else {
-      this.data.tax = this.calulateTax(this.data.income);
+      const tax = this.calulateTax(this.data.income, this.data.QZD);
       this.setData({
-        tax: this.data.tax,
-        income: this.data.income
+        tax: Number(tax).toFixed(2),
+        income: Number(this.data.income).toFixed(2),
+        taxedIncome: Number(this.data.income - tax).toFixed(2)
       })
       console.log("submit clicked");
       console.log(this.data.tax);
@@ -118,7 +131,17 @@ Page({
     // this.data.tax = this.data.income;
     
   },
+
+  tapReset: function(e) {
+    this.setData({
+      tax: "",
+      income: "",
+      taxedIncome: "",
+      QZD: 3500
+    })
+  }
   
+
   
 })
 

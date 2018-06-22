@@ -19,3 +19,15 @@
 .usermotto {
   margin-top: 200px;
 }
+
+
+#main-view {
+  margin: 5px;
+  width: 80%;
+}
+
+#button {
+  width: 30%;
+}
+
+

@@ -12,29 +12,44 @@
     <input id='incomeInput' type='number' placeholder='Input your monthly income'  ></input>
     <text>{{income}}</text>
   </view> -->
-  <view class = "container">
+  <div id="main-view">
     <!-- <view  class = "text-section">
       <text>{{income}}</text>
     </view> -->
-    <view class ="input-section" >
-      <text>Monthly Income: </text>
-      <input placeholder="#" bindinput="inputIncome"/>
-    </view>
-
-    <view class = "submit_section">
-      <button class = "submit" bindtap="tapSubmit">Compute Tax</button>
-    </view>
     
-    <view><label>Your Tax</label></view>
+    <form>
+      <view class="flex-row" style="display: flex">
+        <view class="flex-view-item" >起征点: </view> 
+        <input class="flex-view-item " bindinput="inputQZD"  value="{{QZD}}" />
+        
+      </view>
+
+      <view class="flex-row" style="display: flex">
+        <view class="flex-view-item" >税前工资: </view> 
+        <input class="flex-view-item "  bindinput="inputIncome"  value="{{income}}" />
+        
+      </view>
+      <view class="flex-row" style="display: flex">
+        <button id='button' class = "submit" bindtap="tapSubmit">计算</button>
+        <button id='button' class = "reset" bindtap="tapReset">重置</button>
+      </view>
+    </form>
+    <!-- <view class = "submit_section"> -->
       
-    <view><text>{{tax}}</text></view>
-    
+    <!-- </view> -->
+    <view class="flex-row" style="display: flex">
+      <view class="flex-view-item">应缴税款:  </view> 
+      <view class='flex-view-item '> {{tax}} </view>
+    </view>
+    <view class="flex-row" style="display: flex">
+      <view class="flex-view-item">实发工资: </view>  
+      <div class='flex-view-item '> {{taxedIncome}} </div>
+    </view>
+  </div>
 
-  </view>
 
 
-
-  <view class="usermotto">
+  <!-- <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
-  </view>
+  </view> -->
 </view>
